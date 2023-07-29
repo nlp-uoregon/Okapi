@@ -1,0 +1,16 @@
+accelerate
+datasets
+deepspeed
+torch >= 2.0.1
+wandb
+appdirs
+black[jupyter]
+fire
+transformers == 4.29.2
+sentencepiece
+tokenizers >= 0.13.3
+trlx @ git+https://github.com/CarperAI/trlx.git
+gradio
+scikit-learn
+evaluate
+boto3

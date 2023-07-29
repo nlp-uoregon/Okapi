@@ -1,6 +1,6 @@
 <h1 align="center"> <p> Okapi </p></h1>
 <h3 align="center">
-    <p>nstruction-tuned Large Language Models in Multiple Languages with Reinforcement Learning from Human Feedback</p>
+    <p>Instruction-tuned Large Language Models in Multiple Languages with Reinforcement Learning from Human Feedback</p>
 </h3>
 
 ## Overview
@@ -11,7 +11,7 @@
 
 ## Dataset Creation
 
-we perform a data collection process to prepare necessary data for our multilingual framework Okapi in four major steps: , , , and :
+we perform a data collection process to prepare necessary data for our multilingual framework Okapi in four major steps:
 
 1. **English instruction generation**: Firstly, we obtain 52K instructions for tuning LLMs from Alpaca. Then, we apply the Self-Instruct procedure as Alpaca to generate more 106K additional instructions to a larger dataset for our RLHF-based models.
 2. **Instruction Translation**: Given the 158K English instructions from Alpaca
@@ -20,11 +20,11 @@ and our generation process, we utilize ChatGPT to translate them into 26 target 
 4. **Evaluation data creation**: We employ three datasets in Eleuther AI Language Model Evaluation Harness Leaderboard : AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the model performance by translating them into 26 selected languages using ChatGPT.
 
 ## Model
-Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface library:
+Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface.
 
 
 ## Usage
-You could get started chatting with the model by using the transformers library. We suggest you should install transformers with this version:
+You could get started chatting with the model by using the *transformers* library. We suggest you should install transformers with this version:
 ```
 pip install transformers=4.29.2
 ```
@@ -57,5 +57,28 @@ print(tokenizer.decode(tokens[0], skip_special_tokens=True))
 
 ## Training
 
-Setting up the Environment
+### Set up the environment:
+```bash
+conda create -n okapi python=3.9
+conda activate okapi
+pip install -r requirements.txt
+```
 
+### Training with multiple GPUs:
+
+1. Supervised Fine-tuning
+```bash
+bash scripts/supervised_finetuning.sh [LANG]
+```
+
+2. Reward Modeling
+```bash
+bash scripts/reward_modeling.sh [LANG] [SFT_model_path]
+```
+
+3. Finetuning with RLHF
+```bash
+bash scripts/rl_training.sh [LANG] [SFT_model_path] [RW_model_path]
+```
+
+## Citation
