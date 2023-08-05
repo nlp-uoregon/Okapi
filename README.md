@@ -17,7 +17,7 @@ we perform a data collection process to prepare necessary data for our multiling
 2. **Instruction Translation**: Given the 158K English instructions from Alpaca
 and our generation process, we utilize ChatGPT to translate them into 26 target languages
 3. **Ranking Data Production**: We then employ ChatGPT to rank the response outputs.
-4. **Evaluation data creation**: We employ three datasets in Eleuther AI Language Model Evaluation Harness Leaderboard : AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the model performance by translating them into 26 selected languages using ChatGPT.
+4. **Evaluation data creation**: We employ three datasets in Eleuther AI Language Model Evaluation Harness Leaderboard : AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the model performance by translating them into 26 selected languages using ChatGPT. Checkout [here](https://github.com/laiviet/lm-evaluation-harness)
 
 ## Model
 Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface. Our instruction-tuned multilingual Okapi models are available [here](https://huggingface.co/laiviet). 

@@ -26,7 +26,7 @@ def get_args():
     parser.add_argument("--model_path", type=str, default="bloom-7b1", help="LLaMa weights that is converted to huggingface format!")
     parser.add_argument("--data_path", type=str)
     parser.add_argument("--split", type=str, default="train")
-    parser.add_argument("--size_valid_set", type=float, default=0.01)
+    parser.add_argument("--size_valid_set", type=float, default=0.1)
     parser.add_argument("--seq_length", type=int, default=512)
     parser.add_argument("--num_epochs", type=int, default=3)
     parser.add_argument("--batch_size", type=int, default=128)

@@ -241,7 +241,7 @@ if __name__ == "__main__":
     trainer = trlx.train(
         reward_fn=reward_fn,
         prompts=train_prompts,
-        eval_prompts=val_prompts[:300],
+        eval_prompts=val_prompts,
         config=config,
     )
     # push to huggingface
