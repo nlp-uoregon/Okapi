@@ -20,7 +20,7 @@ and our generation process, we utilize ChatGPT to translate them into 26 target 
 4. **Evaluation data creation**: We employ three datasets in Eleuther AI Language Model Evaluation Harness Leaderboard : AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the model performance by translating them into 26 selected languages using ChatGPT.
 
 ## Model
-Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface.
+Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface. Our instruction-tuned multilingual Okapi models are available [here](https://huggingface.co/laiviet). 
 
 
 ## Usage
@@ -29,17 +29,20 @@ You could get started chatting with the model by using the *transformers* librar
 pip install transformers=4.29.2
 ```
 
-
+Notes that to chat with our model, you also need the `prompter.py` file inside the `utils` folder.
 ```python
 from utils import Prompter
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-model_path = 'path/to/model_weight'
+# model_path = 'path/to/model_weight'
+model_path = 'laiviet/okapi-vi-bloom'
+
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.float16).cuda()
 
+prompter = Prompter()
 instruction = 'Give three tips for staying healthy.'
 prompt_input = ''
 
@@ -52,7 +55,8 @@ output = model.generate(
     top_p=0.75,
     top_k=40
 )
-print(tokenizer.decode(tokens[0], skip_special_tokens=True))
+output = tokenizer.decode(tokens[0], skip_special_tokens=True)
+print(prompter.get_response(output))
 ```
 
 ## Training
@@ -73,12 +77,23 @@ bash scripts/supervised_finetuning.sh [LANG]
 
 2. Reward Modeling
 ```bash
-bash scripts/reward_modeling.sh [LANG] [SFT_model_path]
+bash scripts/reward_modeling.sh [LANG]
 ```
 
 3. Finetuning with RLHF
 ```bash
-bash scripts/rl_training.sh [LANG] [SFT_model_path] [RW_model_path]
+bash scripts/rl_training.sh [LANG]
 ```
 
 ## Citation
+If you use the data, model or code in this repository, please cite:
+
+```
+@article{dac2023okapi,
+  title={Okapi: Instruction-tuned Large Language Models in Multiple Languages with Reinforcement Learning from Human Feedback},
+  author={Dac Lai, Viet and Van Nguyen, Chien and Ngo, Nghia Trung and Nguyen, Thuat and Dernoncourt, Franck and Rossi, Ryan A and Nguyen, Thien Huu},
+  journal={arXiv e-prints},
+  pages={arXiv--2307},
+  year={2023}
+}
+```
