@@ -24,41 +24,26 @@ Using our Okapi dataset dataset and the RLHF-based technique, we have developed 
 
 
 ## Usage
-You could get started chatting with the model by using the *transformers* library. We suggest you should install transformers with this version:
+You could get started chatting with the model by cloning our repository.
 ```
-pip install transformers=4.29.2
+git clone https://github.com/nlp-uoregon/Okapi.git
+cd Okapi
+pip install -r requirements.txt
 ```
 
-Notes that to chat with our model, you also need the `prompter.py` file inside the `utils` folder.
+Then, you can try to chat with our model:
 ```python
-from utils import Prompter
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from chat import pipeline
 
-# model_path = 'path/to/model_weight'
 model_path = 'laiviet/okapi-vi-bloom'
+p = pipeline(model_path, gpu=True)
 
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForCausalLM.from_pretrained(
-            model_path,
-            torch_dtype=torch.float16).cuda()
+instruction = 'Dịch câu sau sang Tiếng Việt' # Translate the following sentence into Vietnamese
+prompt_input = 'The City of Eugene - a great city for the arts and outdoors. '
 
-prompter = Prompter()
-instruction = 'Give three tips for staying healthy.'
-prompt_input = ''
-
-prompt = prompter.generate_prompt(instruction, prompt_input)
-inputs = tokenizer(prompt, return_tensors='pt').to('cuda')
-output = model.generate(
-    **inputs,
-    max_new_tokens=256,
-    do_sample=True,
-    top_p=0.75,
-    top_k=40
-)
-output = tokenizer.decode(tokens[0], skip_special_tokens=True)
-print(prompter.get_response(output))
+response = p.generate(instruction=instruction, prompt_input=prompt_input)
+print(response)
 ```
-
 ## Training
 
 ### Set up the environment:

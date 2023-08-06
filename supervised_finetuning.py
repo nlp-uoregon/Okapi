@@ -179,7 +179,7 @@ def main(args):
     elif 'Bloom' in architecture:
         args.fsdp_transformer_layer_cls_to_wrap = "BloomBlock"
     else:
-        raise ValueError("We only support Llama and Bloom models"")
+        raise ValueError("We only support Llama and Bloom models")
 
     train_dataset, eval_dataset = create_datasets(tokenizer, args)
     run_training(args, train_dataset, eval_dataset, tokenizer)

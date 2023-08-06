@@ -1,6 +1,6 @@
 lang=$1
 sft_model_path=sft_models/sft_model_$lang
-data_path=dataset/elk-chatgpt/$lang.json
+data_path=datasets/elk-chatgpt/$lang.json
 rm_output_dir=ckpts/reward_models/rm_$lang
 rl_output_dir=ckpts/rlhf/okapi-$lang
 
