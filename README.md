@@ -5,33 +5,44 @@
 
 ## Overview
 
-**Okapi dataset** consists of instruction resources for 26 different languages, including ChatGPT prompts, instruction datasets and response ranking data and benchmark datasets.
+This is the repo for the Okapi framework that introduces resources and models for instruction tuning for large language models (LLMs) with reinforcement learning from human feedback (RLHF) in multiple languages. Our framework supports 26 languages, including 8 high-resource languages, 11 medium-resource languages, and 7 low-resource languages.
 
-**Okapi models** are a series of RLHF-based instruction-tuned LLMs for multiple languages on Okapi dataset.
+**Okapi Resources**: We provide resources to perform instruction tuning with RLHF for 26 languages, including ChatGPT prompts, multilingual instruction datasets, multilingual response ranking data, and multilingual evaluation benchmark datasets.
+
+**Okapi Models**: We provide RLHF-based instruction-tuned LLMs for 26 languages on Okapi dataset. Our models include both BLOOM-based and LLaMa-based versions. We also provide scripts to interact with our models and fine-tune LLMs with our resources.
+
+**Usage and License Notices**: Okapi is intended and licensed for research use only. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
 
 ## Dataset Creation
 
-we perform a data collection process to prepare necessary data for our multilingual framework Okapi in four major steps:
+We perform a comprehensive data collection process to prepare necessary data for our multilingual framework Okapi in four major steps:
 
-1. **English instruction generation**: Firstly, we obtain 52K instructions for tuning LLMs from Alpaca. Then, we apply the Self-Instruct procedure as Alpaca to generate more 106K additional instructions to a larger dataset for our RLHF-based models.
-2. **Instruction Translation**: Given the 158K English instructions from Alpaca
-and our generation process, we utilize ChatGPT to translate them into 26 target languages
-3. **Ranking Data Production**: We then employ ChatGPT to rank the response outputs.
-4. **Evaluation data creation**: We employ three datasets in Eleuther AI Language Model Evaluation Harness Leaderboard : AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the model performance by translating them into 26 selected languages using ChatGPT. Checkout [here](https://github.com/laiviet/lm-evaluation-harness)
+1. **English Instruction Generation**: First, we obtain 52K English instructions for tuning LLMs from Alpaca. Afterward, we apply the same Self-Instruct procedure as Alpaca to generate 106K additional English instructions, resulting in a larger combined dataset of 158K instructions for our RLHF-based models in Okapi.
+2. **Instruction Translation**: We utilize ChatGPT to translate our 158K English instructions into 26 target languages. For each language, the 158K instructions will be divided into data for supervised fine-tuning, reward modeling, and RLHF.
+3. **Ranking Data Production**: We employ ChatGPT to rank multiple response outputs for the same instructions from LLMs. To produce response ranking data for multiple languages, we introduce a two-turn dialog approach: (i) instructions and responses are first translated into English, and (ii) ChatGPT then helps rank the translated data in English.
+4. **Evaluation Data Creation**: We leverage three datasets in the HuggingFace Open LLM Leaderboard, i.e., AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the multilingual fine-tuned LLMs. As these datasets are originally provided for English only, we translate them into 26 languages in our framework using ChatGPT. The evaluation data and scripts can be found here: [here](https://github.com/laiviet/lm-evaluation-harness).
+
+Our released data can be found in the **datasets** directory. It includes:
+
+**multilingual-alpaca-52k**: The translated data for 52K English instructions in Alpaca into 26 languages.
+**multilingual-ranking-data-42k**: The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
+**multilingual-rl-tuning-64k**: The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
 
 ## Model
-Using our Okapi dataset dataset and the RLHF-based technique, we have developed a diverse range of language models for 26 seletec langauges, built upon LLaMA and BLOOM. You can access these models through huggingface. Our instruction-tuned multilingual Okapi models are available [here](https://huggingface.co/laiviet). 
+Using our Okapi datasets and the RLHF-based instruction-tuning technique, we introduce multilingual fine-tuned LLMs for 26 languages, built upon the 7B versions of LLaMA and BLOOM. The models can be obtained from HuggingFace [here](https://huggingface.co/laiviet). 
 
 
-## Usage
-You could get started chatting with the model by cloning our repository.
+## Chat with our Models
+Okapi supports interactive chats with the multilingual instruction-tuned LLMs in 26 languages. Following the following steps for the chats:
+
+1. Clone our repository
 ```
 git clone https://github.com/nlp-uoregon/Okapi.git
 cd Okapi
 pip install -r requirements.txt
 ```
 
-Then, you can try to chat with our model:
+2. Select a model for a language and chat with it. For each of the 26 languages, both BLOOM-based and LLaMa-based models can be selected. The full list of the models can be found [here](https://huggingface.co/laiviet).
 ```python
 from chat import pipeline
 
@@ -45,6 +56,7 @@ response = p.generate(instruction=instruction, prompt_input=prompt_input)
 print(response)
 ```
 ## Training
+We also provide scripts to fine-tune LLMs with our instruction data using RLHF, covering three major steps: supervised fine-tuning, reward modeling, and fine-tuning with RLHF. Use the following steps to fine-tune LLMs:
 
 ### Set up the environment:
 ```bash
@@ -65,7 +77,7 @@ bash scripts/supervised_finetuning.sh [LANG]
 bash scripts/reward_modeling.sh [LANG]
 ```
 
-3. Finetuning with RLHF
+3. Fine-tuning with RLHF
 ```bash
 bash scripts/rl_training.sh [LANG]
 ```
