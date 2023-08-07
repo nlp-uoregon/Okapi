@@ -25,7 +25,9 @@ We perform a comprehensive data collection process to prepare necessary data for
 Our released data can be found in the **datasets** directory. It includes:
 
 **multilingual-alpaca-52k**: The translated data for 52K English instructions in Alpaca into 26 languages.
+
 **multilingual-ranking-data-42k**: The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
+
 **multilingual-rl-tuning-64k**: The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
 
 ## Model
