@@ -8,7 +8,7 @@
 This is the repo for the Okapi framework that introduces resources and models for instruction tuning for large language models (LLMs) with reinforcement learning from human feedback (RLHF) in multiple languages. Our framework supports 26 languages, including 8 high-resource languages, 11 medium-resource languages, and 7 low-resource languages.
 
 <p align="center">
-[<img src="assets/Okapi_Languages.png" width="350" />](./assets/Okapi_Languages.png)
+<img src="assets/Okapi_Languages.png" width="350" alt="Title"/>
 </p>
 
 **Okapi Resources**: We provide resources to perform instruction tuning with RLHF for 26 languages, including ChatGPT prompts, multilingual instruction datasets, multilingual response ranking data, and multilingual evaluation benchmark datasets.
