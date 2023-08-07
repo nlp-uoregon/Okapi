@@ -3,8 +3,15 @@
     <p>Instruction-tuned Large Language Models in Multiple Languages with Reinforcement Learning from Human Feedback</p>
 </h3>
 
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/nlp-uoregon/Okapi/blob/main/LICENSE)
-[![Data License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)](https://github.com/nlp-uoregon/Okapi/blob/main/DATA_LICENSE)
+<div align="center">
+    <a href="https://github.com/nlp-uoregon/Okapi/blob/main/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg">
+    </a>
+
+    <a href="https://github.com/nlp-uoregon/Okapi/blob/main/DATA_LICENSE">
+        <img alt="GitHub data" src="https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg">
+    </a>
+</div>
 
 ## Overview
 
@@ -96,7 +103,7 @@ bash scripts/rl_training.sh [LANG]
 ## Citation
 If you use the data, model or code in this repository, please cite:
 
-```
+```bibtex
 @article{dac2023okapi,
   title={Okapi: Instruction-tuned Large Language Models in Multiple Languages with Reinforcement Learning from Human Feedback},
   author={Dac Lai, Viet and Van Nguyen, Chien and Ngo, Nghia Trung and Nguyen, Thuat and Dernoncourt, Franck and Rossi, Ryan A and Nguyen, Thien Huu},
