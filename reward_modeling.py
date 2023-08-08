@@ -28,7 +28,7 @@ from utils import Prompter
 
 def load_model(args):
     print('Loading model...')
-    config = AutoConfig.from_pretrained(args.model_path, use_auth_token="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")
+    config = AutoConfig.from_pretrained(args.model_path)
     architecture = config.architectures[0]
     tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_path)
 
