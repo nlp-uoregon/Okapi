@@ -24,7 +24,7 @@ This is the repo for the Okapi framework that introduces resources and models fo
 
 **Okapi Models**: We provide RLHF-based instruction-tuned LLMs for 26 languages on Okapi dataset. Our models include both BLOOM-based and LLaMa-based versions. We also provide scripts to interact with our models and fine-tune LLMs with our resources.
 
-**Multilingual Evaluation Benchmark Datasets**: We provide three benchmark datasets for evaluating Multilingual Large Language Models (LLMs) for 26 languages. You can access the full datasets and evaluation scripts here: [here](https://github.com/nlp-uoregon/mlmm-evaluation).
+**Multilingual Evaluation Benchmark Datasets**: We provide three benchmark datasets for evaluating Multilingual Large Language Models (LLMs) for 26 languages. You can access the full datasets and evaluation scripts here: [here](https://github.com/nlp-uoregon/mlmm-evaluation). 
 
 **Usage and License Notices**: Okapi is intended and licensed for research use only. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
 
