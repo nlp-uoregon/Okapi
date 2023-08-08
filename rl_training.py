@@ -110,9 +110,7 @@ def create_reward_fn(args):
 
         reward_model = AutoModelForSequenceClassification.from_pretrained(
             args.reward_model_path,
-            use_auth_token="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",
             torch_dtype=torch.bfloat16,
-            # token="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"
         )
         reward_model.requires_grad_(False)
         reward_model.config.pad_token_id = reward_tokenizer.pad_token_id
@@ -139,8 +137,6 @@ def create_reward_fn(args):
                     )[0].squeeze(-1).cpu()
                 all_scores.append(scores)
             scores = torch.hstack(all_scores)
-            # scale reward scores
-            # scores = 2*sigmoid_fn(scores)
             return scores
 
         def reward_fn(samples: List[str], original_output: List[str], **kwargs) -> torch.Tensor:
