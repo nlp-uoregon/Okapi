@@ -26,9 +26,9 @@ This is the repo for the Okapi framework that introduces resources and models fo
 
 **Multilingual Evaluation Benchmark Datasets**: We provide three benchmark datasets for evaluating Multilingual Large Language Models (LLMs) for 26 languages. You can access the full datasets and evaluation scripts here: [here](https://github.com/nlp-uoregon/mlmm-evaluation). 
 
-**Usage and License Notices**: Okapi is intended and licensed for research use only. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
+**Usage and License Notices**: Okapi is intended and licensed for research use only. The datasets are CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
 
-Our technical paper with evaluation results can be found here: [here](https://arxiv.org/abs/2307.16039).
+Our technical paper with evaluation results can be found [here](https://arxiv.org/abs/2307.16039).
 
 ## Dataset Creation
 
@@ -37,7 +37,7 @@ We perform a comprehensive data collection process to prepare necessary data for
 1. **English Instruction Generation**: First, we obtain 52K English instructions for tuning LLMs from Alpaca. Afterward, we apply the same Self-Instruct procedure as Alpaca to generate 106K additional English instructions, resulting in a larger combined dataset of 158K instructions for our RLHF-based models in Okapi.
 2. **Instruction Translation**: We utilize ChatGPT to translate our 158K English instructions into 26 target languages. For each language, the 158K instructions will be divided into data for supervised fine-tuning, reward modeling, and RLHF.
 3. **Ranking Data Production**: We employ ChatGPT to rank multiple response outputs for the same instructions from LLMs. To produce response ranking data for multiple languages, we introduce a two-turn dialog approach: (i) instructions and responses are first translated into English, and (ii) ChatGPT then helps rank the translated data in English.
-4. **Evaluation Data Creation**: We leverage three datasets in the HuggingFace Open LLM Leaderboard, i.e., AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the multilingual fine-tuned LLMs. As these datasets are originally provided for English only, we translate them into 26 languages in our framework using ChatGPT. The evaluation data and scripts can be found here: [here](https://github.com/nlp-uoregon/mlmm-evaluation).
+4. **Evaluation Data Creation**: We leverage three datasets in the HuggingFace Open LLM Leaderboard, i.e., AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the multilingual fine-tuned LLMs. As these datasets are originally provided for English only, we translate them into 26 languages in our framework using ChatGPT. The evaluation data and scripts can be found [here](https://github.com/nlp-uoregon/mlmm-evaluation).
 
 Our released data can be found in the **datasets** directory. It includes:
 
