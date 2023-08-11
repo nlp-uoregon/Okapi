@@ -50,15 +50,14 @@ If you only need the data for a specific language, you can specify the language 
 bash scripts/download.sh [LANG]
 # For example, to download the dataset for Vietnamese: bash scripts/download.sh vi
 ```
-Replace [LANG] with the appropriate language code.
 
 After downloading, our released data can be found in the **datasets** directory. It includes:
 
-**multilingual-alpaca-52k**: The translated data for 52K English instructions in Alpaca into 26 languages.
+- **multilingual-alpaca-52k**: The translated data for 52K English instructions in Alpaca into 26 languages.
 
-**multilingual-ranking-data-42k**: The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
+- **multilingual-ranking-data-42k**: The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
 
-**multilingual-rl-tuning-64k**: The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
+- **multilingual-rl-tuning-64k**: The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
 
 ## Model
 Using our Okapi datasets and the RLHF-based instruction-tuning technique, we introduce multilingual fine-tuned LLMs for 26 languages, built upon the 7B versions of LLaMA and BLOOM. The models can be obtained from HuggingFace [here](https://huggingface.co/uonlp). 
