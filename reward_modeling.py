@@ -202,7 +202,7 @@ def run_training(args):
         logging_steps=args.log_freq,
         report_to='wandb',
         fsdp="full_shard auto_wrap",
-        fsdp_transformer_layer_cls_to_wrap='BloomBlock',
+        fsdp_transformer_layer_cls_to_wrap=args.fsdp_transformer_layer_cls_to_wrap,
     )
 
     def compute_metrics(eval_preds):
