@@ -39,13 +39,26 @@ We perform a comprehensive data collection process to prepare necessary data for
 3. **Ranking Data Production**: We employ ChatGPT to rank multiple response outputs for the same instructions from LLMs. To produce response ranking data for multiple languages, we introduce a two-turn dialog approach: (i) instructions and responses are first translated into English, and (ii) ChatGPT then helps rank the translated data in English.
 4. **Evaluation Data Creation**: We leverage three datasets in the HuggingFace Open LLM Leaderboard, i.e., AI2 Reasoning Challenge (ARC), HellaSwag, and MMLU, to evaluate the multilingual fine-tuned LLMs. As these datasets are originally provided for English only, we translate them into 26 languages in our framework using ChatGPT. The evaluation data and scripts can be found [here](https://github.com/nlp-uoregon/mlmm-evaluation).
 
-Our released data can be found in the **datasets** directory. It includes:
+## Downloading Datasets
+To download the entire dataset, you can use the following script:
+```bash
+bash scripts/download.sh
+```
 
-[`multilingual-alpaca-52k`](./datasets/multilingual-alpaca-52k): The translated data for 52K English instructions in Alpaca into 26 languages.
+If you only need the data for a specific language, you can specify the language code as an argument to the script:
+```bash
+bash scripts/download.sh [LANG]
+# For example, to download the dataset for Vietnamese: bash scripts/download.sh vi
+```
+Replace [LANG] with the appropriate language code.
 
-[`multilingual-ranking-data-42k`](./datasets/multilingual-ranking-data-42k): The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
+After downloading, our released data can be found in the **datasets** directory. It includes:
 
-[`multilingual-rl-tuning-64k`](./datasets/multilingual-rl-tuning-64k): The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
+**multilingual-alpaca-52k**: The translated data for 52K English instructions in Alpaca into 26 languages.
+
+**multilingual-ranking-data-42k**: The multilingual response ranking data for 26 languages. For each language, we provide 42K instructions; each of them has 4 ranked responses. This data can be used to train reward models for 26 languages.
+
+**multilingual-rl-tuning-64k**: The multilingual instruction data for RLHF. We provide 62K instructions for each of the 26 languages.
 
 ## Model
 Using our Okapi datasets and the RLHF-based instruction-tuning technique, we introduce multilingual fine-tuned LLMs for 26 languages, built upon the 7B versions of LLaMA and BLOOM. The models can be obtained from HuggingFace [here](https://huggingface.co/uonlp). 
